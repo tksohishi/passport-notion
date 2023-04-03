@@ -30,7 +30,6 @@ export interface NotionVerifyCallback {
     accessToken: string, // oauthData.access_token,
     _unknown: undefined, // ? undefined,
     oauthData: NotionOAuthToken, // ? Notion OAuth response?
-    userProfileData: GetUserResponse, // ? get /v1/users/me response?
     callback: (err: Error | undefined, user: any, info: unknown) => void
   ): void
 }
@@ -77,16 +76,12 @@ export default class Strategy extends PassportStrategy {
     if (req.query && req.query.code) {
       try {
         const oauthData = await this.getOAuthAccessToken(req.query.code as string)
-        if (oauthData.owner.type !== "user") {
-          throw new Error(`Notion API token not owned by user, instead: ${oauthData.owner.type}`)
-        }
 
         this._verify(
           req,
           oauthData.access_token,
           undefined,
           oauthData,
-          oauthData.owner.user,
           (err, user, info) => {
             if (err) return this.error(err)
             if (!user) return this.fail(info as any /* ??? */)
