@@ -91,6 +91,13 @@ export default class Strategy extends PassportStrategy {
       } catch (error) {
         this.error(error as Error)
       }
+    } else if (req.query && req.query.error) {
+      const errorMessage = req.query.error as string;
+      if (errorMessage === 'access_denied') {
+        this.fail(req.query.error, 403)
+      } else {
+        this.error(new Error(errorMessage))
+      }
     } else {
       const authUrl = new URL(this._authorizationURL)
       authUrl.searchParams.set("client_id", this._clientID)
