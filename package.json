@@ -1,6 +1,6 @@
 {
-  "name": "passport-notion",
-  "version": "1.0.2",
+  "name": "@tks/passport-notion",
+  "version": "1.1.0",
   "description": "Notion authentication strategy for Passport and Node.js",
   "main": "./lib/passport-notion",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rat9615/passport-notion.git"
+    "url": "git+https://github.com/tksohishi/passport-notion.git"
   },
   "keywords": [
     "passport",
@@ -22,11 +22,11 @@
     "oauth2"
   ],
   "author": "Rohan R",
+  "contributors": [
+    "Takeshi"
+  ],
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rat9615/passport-notion/issues"
-  },
-  "homepage": "https://github.com/rat9615/passport-notion#readme",
+  "homepage": "https://github.com/tksohishi/passport-notion#readme",
   "dependencies": {
     "@notionhq/client": "0.4.2",
     "passport-strategy": "^1.0.0"
